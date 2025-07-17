@@ -10,7 +10,6 @@ typedef enum {
     CONSUMABLE,
     ARMOR,
     INTERACTABLE,
-    THROWABLE
 } ItemType;
 
 typedef struct {
@@ -24,6 +23,8 @@ typedef struct {
             double totalDamage; // total damage after calculation
             double effectChance; // percent that effect will be applied on hit
             EffectType effect; // effect applied on weapon
+            bool isThrowable;
+            int ammoRemaining;
             // damage type
         } weaponData;
 
@@ -47,17 +48,11 @@ typedef struct {
         } armorData;
 
         struct {
-            bool lostOnUse;
             ObjectType usableOn;
+            bool lostOnUse;
             char usedFor[100];
         } interactableData;
-
-        struct { // same as weapon?
-            int baseDamage;
-            int damageMultiplier;
-            EffectType effect;
-        } throwableData;
-    } itemData;
+    } ItemData;
 } Item;
 
 void initItem(Item *newItem);
